@@ -42,17 +42,30 @@ r = User.new({_id: '569809fda2dc7acb80000000'}).remove_one()
 # If no key is passed in (1st param to `update()`) then Api will use internal @id
 # When updating, an @id must already exist (since the doc was created & saved to DB)
 u = User.new({email: 's@s'}).update({}, {email: 's@m'})
+
+# RECOMMENDATIONS:
+# To get recommendations for a particular user
+user_id = '569809fda2dc7acb80000000' # string
+# convert user_id to bson ID
+user_id = BSON::ObjectId(user_id)
+r = Recommendations.new().get_unique_recommendations(user_id) 
+# user_id must be a BSON string for ex: 569809fda2dc7acb80000000
 ```
 
-* Sinatra - Ruby Framework
-* gem install sinatra-contrib
+## TODO Automated Tests:
+* recommendations.rb: Test app is able to generate recommendations for users 
+* recommendations.rb: Test app is able to create 5 random users using generate_five_users()
+* End to End Test: Test app is able to create a user and able to get recommendaions for that user
+
+## Libraries used and useful info!
+** Sinatra - Ruby Framework (http://www.sinatrarb.com/intro.html)
 * Mongo - MongoDB library
 * [https://github.com/codahale/bcrypt-ruby] (bcrypt-ruby) -  same password library Devise and other Ruby authentication libraries use.
 * [https://github.com/hassox/warden/wiki]) (Warden) -  # The same authentication library Devise and other Ruby authentication libraries use
 
 ## License
 
-    Copyright [2016] [Sabelo Mhlambi]
+    Copyright [2015] [Sabelo Mhlambi]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
