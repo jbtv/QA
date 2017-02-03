@@ -45,6 +45,9 @@ u = User.new({email: 's@s'}).update({}, {email: 's@m'})
 
 # RECOMMENDATIONS:
 # To get recommendations for a particular user
+user_id = '569809fda2dc7acb80000000' # string
+# convert user_id to bson ID
+user_id = BSON::ObjectId(user_id)
 r = Recommendations.new().get_unique_recommendations(user_id) 
 # user_id must be a BSON string for ex: 569809fda2dc7acb80000000
 ```
@@ -54,9 +57,8 @@ r = Recommendations.new().get_unique_recommendations(user_id)
 * recommendations.rb: Test app is able to create 5 random users using generate_five_users()
 * End to End Test: Test app is able to create a user and able to get recommendaions for that user
 
-## Libraries used 
-* Sinatra - Ruby Framework
-* gem install sinatra-contrib  or bundle install
+## Libraries used and useful info!
+** Sinatra - Ruby Framework (http://www.sinatrarb.com/intro.html)
 * Mongo - MongoDB library
 * [https://github.com/codahale/bcrypt-ruby] (bcrypt-ruby) -  same password library Devise and other Ruby authentication libraries use.
 * [https://github.com/hassox/warden/wiki]) (Warden) -  # The same authentication library Devise and other Ruby authentication libraries use
